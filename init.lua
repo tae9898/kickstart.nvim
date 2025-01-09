@@ -223,7 +223,7 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.rtp:prepend(lazypath)
-
+vim.o.foldlevelstart = 99
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run

@@ -149,7 +149,7 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '» ', trail = '*', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -206,7 +206,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
-
+vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+  pattern = '*',
+  callback = function()
+    vim.api.nvim_set_hl(0, 'TrailingWhitespace', { bg = '#FF0000' })
+    vim.fn.matchadd('TrailingWhitespace', '\\s\\+$')
+  end,
+})
 --  i put some keymap to scroll only by my left hand
 vim.api.nvim_set_keymap('n', '<C-e>', '<C-u>', { noremap = true, silent = true })
 

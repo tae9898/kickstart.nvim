@@ -100,7 +100,12 @@ vim.g.have_nerd_font = false
 
 -- yeah ctags bro
 vim.opt.tags = '/.tags;/'
-
+vim.opt.expandtab = true -- 탭을 스페이스로 변환
+vim.opt.tabstop = 4 -- 탭 당 공백 개수
+vim.opt.shiftwidth = 4 -- 자동 들여쓰기 크기
+vim.opt.softtabstop = 4 -- 편집할 때 탭 크기
+vim.opt.autoindent = true -- 자동 들여쓰기
+vim.opt.smartindent = true -- 스마트 들여쓰기
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -243,7 +248,7 @@ vim.o.foldlevelstart = 99
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  --  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following

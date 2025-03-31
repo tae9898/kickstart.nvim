@@ -219,6 +219,9 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
     vim.fn.matchadd('TrailingWhitespace', '\\s\\+$')
   end,
 })
+-- i want to use :g not :G
+vim.cmd 'cnoreabbrev g G'
+
 --  i put some keymap to scroll only by my left hand
 vim.api.nvim_set_keymap('n', '<C-e>', '<C-u>', { noremap = true, silent = true })
 

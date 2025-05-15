@@ -202,6 +202,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 --  See `:help lua-guide-autocommands`
 -- i don't wanna save at clipboard when i use 'x'
 vim.keymap.set('n', 'x', '"_x', { noremap = true })
+-- and i don't wanna \n when "yy"
+vim.keymap.set('n', 'yy', function()
+  vim.cmd 'normal! "+yy' -- but i do not want erase highlight func haha
+  vim.fn.setreg('+', vim.fn.getline '.')
+end, { silent = true })
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`

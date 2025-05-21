@@ -208,6 +208,24 @@ vim.keymap.set('n', 'yy', function()
   vim.fn.setreg('+', vim.fn.getline '.')
 end, { silent = true })
 
+-- this is for gpt shortcut
+
+vim.keymap.set('n', '<leader>gg', ':ChatGPT<CR>', { noremap = true, silent = true, desc = 'Open ChatGPT' })
+vim.keymap.set('n', '<leader>ge', ':ChatGPTEditWithInstruction<CR>', { noremap = true, silent = true, desc = 'Edit with instruction' })
+vim.keymap.set('v', '<leader>ge', ':ChatGPTEditWithInstruction<CR>', { noremap = true, silent = true, desc = 'Edit with instruction' })
+vim.keymap.set('n', '<leader>gc', ':ChatGPTRun grammar_correction<CR>', { noremap = true, silent = true, desc = 'Grammar correction' })
+vim.keymap.set('v', '<leader>gc', ':ChatGPTRun grammar_correction<CR>', { noremap = true, silent = true, desc = 'Grammar correction' })
+vim.keymap.set('n', '<leader>gt', ':ChatGPTRun translate<CR>', { noremap = true, silent = true, desc = 'Translate' })
+vim.keymap.set('v', '<leader>gt', ':ChatGPTRun translate<CR>', { noremap = true, silent = true, desc = 'Translate' })
+vim.keymap.set('n', '<leader>go', ':ChatGPTRun optimize_code<CR>', { noremap = true, silent = true, desc = 'Optimize code' })
+vim.keymap.set('v', '<leader>go', ':ChatGPTRun optimize_code<CR>', { noremap = true, silent = true, desc = 'Optimize code' })
+vim.keymap.set('n', '<leader>gs', ':ChatGPTRun summarize<CR>', { noremap = true, silent = true, desc = 'Summarize' })
+vim.keymap.set('v', '<leader>gs', ':ChatGPTRun summarize<CR>', { noremap = true, silent = true, desc = 'Summarize' })
+vim.keymap.set('n', '<leader>gd', ':ChatGPTRun docstring<CR>', { noremap = true, silent = true, desc = 'Docstring' })
+vim.keymap.set('v', '<leader>gd', ':ChatGPTRun docstring<CR>', { noremap = true, silent = true, desc = 'Docstring' })
+vim.keymap.set('n', '<leader>gx', ':ChatGPTRun explain_code<CR>', { noremap = true, silent = true, desc = 'Explain code' })
+vim.keymap.set('v', '<leader>gx', ':ChatGPTRun explain_code<CR>', { noremap = true, silent = true, desc = 'Explain code' })
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -294,7 +312,25 @@ require('lazy').setup({
       },
     },
   },
-
+  -- for gpt it's your gmail not naver sir
+  -- export OPENAI_API_KEY="api key"
+  {
+    'jackMort/ChatGPT.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require('chatgpt').setup {
+        keymaps = {
+          submit = { '<A-Enter>' },
+        },
+      }
+    end,
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'nvim-lua/plenary.nvim',
+      'folke/trouble.nvim', -- optional
+      'nvim-telescope/telescope.nvim',
+    },
+  },
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle

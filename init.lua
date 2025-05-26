@@ -215,8 +215,6 @@ vim.keymap.set('n', '<leader>ge', ':ChatGPTEditWithInstruction<CR>', { noremap =
 vim.keymap.set('v', '<leader>ge', ':ChatGPTEditWithInstruction<CR>', { noremap = true, silent = true, desc = 'Edit with instruction' })
 vim.keymap.set('n', '<leader>gc', ':ChatGPTRun grammar_correction<CR>', { noremap = true, silent = true, desc = 'Grammar correction' })
 vim.keymap.set('v', '<leader>gc', ':ChatGPTRun grammar_correction<CR>', { noremap = true, silent = true, desc = 'Grammar correction' })
-vim.keymap.set('n', '<leader>gt', ':ChatGPTRun translate<CR>', { noremap = true, silent = true, desc = 'Translate' })
-vim.keymap.set('v', '<leader>gt', ':ChatGPTRun translate<CR>', { noremap = true, silent = true, desc = 'Translate' })
 vim.keymap.set('n', '<leader>go', ':ChatGPTRun optimize_code<CR>', { noremap = true, silent = true, desc = 'Optimize code' })
 vim.keymap.set('v', '<leader>go', ':ChatGPTRun optimize_code<CR>', { noremap = true, silent = true, desc = 'Optimize code' })
 vim.keymap.set('n', '<leader>gs', ':ChatGPTRun summarize<CR>', { noremap = true, silent = true, desc = 'Summarize' })
@@ -321,6 +319,10 @@ require('lazy').setup({
       require('chatgpt').setup {
         keymaps = {
           submit = { '<A-Enter>' },
+        },
+        openai_params = {
+          model = 'gpt-4o',
+          max_tokens = 2000,
         },
       }
     end,

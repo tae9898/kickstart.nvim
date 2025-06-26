@@ -202,6 +202,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 --  See `:help lua-guide-autocommands`
 -- i don't wanna save at clipboard when i use 'x'
 vim.keymap.set('n', 'x', '"_x', { noremap = true })
+-- i don't wanna save at clipboard when i use 'd'
+vim.keymap.set('n', 'd', '"_d')
+vim.keymap.set('v', 'd', '"_d')
+vim.keymap.set('n', 'D', '"_D')
+vim.keymap.set('n', 'dd', '"_dd')
+
 -- and i don't wanna \n when "yy"
 vim.keymap.set('n', 'yy', function()
   vim.cmd 'normal! "+yy' -- but i do not want erase highlight func haha

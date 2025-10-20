@@ -272,11 +272,31 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+--change the searching word's color
+vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
+    group = search_highlight_group,
+    pattern = "*",
+    callback = function()
+        vim.api.nvim_set_hl(0, "Search", {
+            bg = "#008000", -- 진한 초록색 배경 (Green)
+            fg = "#FFFFFF", -- 흰색 글자색 (대비 강조)
+        })
+        -- 현재 커서 위치의 단일 매칭 색상도 필요하면 여기에 추가할 수 있습니다.
+        -- vim.api.nvim_set_hl(0, "IncSearch", { bg = "#00FF00", fg = "#000000" })
+    end,
+})
 vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   pattern = '*',
   callback = function()
     vim.api.nvim_set_hl(0, 'TrailingWhitespace', { bg = '#FF0000' })
     vim.fn.matchadd('TrailingWhitespace', '\\s\\+$')
+  end,
+})
+-- off auto //
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "r", "o" })
   end,
 })
 -- i want to use :g not :G

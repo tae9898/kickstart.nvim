@@ -1029,7 +1029,18 @@ require('lazy').setup({
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
-
+{
+  "folke/flash.nvim",
+  event = "VeryLazy",
+  opts = {},
+  keys = {
+    -- 's' 키를 누르면 화면의 모든 단어에 힌트가 뜹니다.
+    -- 원하는 곳의 알파벳을 누르면 즉시 이동합니다.
+    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+    -- 'S' 키는 Treesitter 기반으로 범위를 선택하며 이동합니다 (함수 전체 선택 등).
+    { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+  },
+},
   ---@type LazySpec
   {
     'mikavilpas/yazi.nvim',

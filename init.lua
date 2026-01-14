@@ -797,7 +797,20 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        clangd = {},
+clangd = {
+    -- 1. 로그에 AST 에러가 너무 많으므로 백그라운드 인덱싱 옵션도 추가하면 좋습니다.
+    cmd = {
+        "clangd",
+        "--background-index",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
+        "--completion-style=detailed",
+        "--function-arg-placeholders",
+        "--fallback-style=llvm",
+        -- 👇 [중요] 여기에 님 툴체인 경로를 와일드카드로 적어주세요
+        "--query-driver=/usr/bin/*gcc*,/opt/toolchains/**/*gcc*,/home/ktkim/**/*gcc*" 
+    },
+},
         -- gopls = {},
         pyright = {},
         -- rust_analyzer = {},

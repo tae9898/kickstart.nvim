@@ -1286,6 +1286,39 @@ clangd = {
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+{
+    -- wget https://luarocks.org/releases/luarocks-3.11.1.tar.gz
+    --tar zxpf luarocks-3.11.1.tar.gz
+    --cd luarocks-3.11.1
+    --./configure && make && sudo make install
+    "3rd/image.nvim",
+    dependencies = {
+      "vhyrro/luarocks.nvim", -- luarocks를 Neovim에서 쓰게 해줌
+    },
+    config = function()
+      require("image").setup({
+        backend = "kitty", -- Kitty 사용 시 'kitty', WezTerm 사용 시 'ueberzug' 등 선택
+        integrations = {
+          markdown = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+            filetypes = { "markdown", "vimwiki" }, -- 마크다운에서 자동 표시
+          },
+          neorg = {
+            enabled = true,
+          },
+        },
+        max_width = 100,
+        max_height = 12,
+        max_width_window_percentage = nil,
+        max_height_window_percentage = 50,
+        window_overlap_clear_enabled = false,
+        pipe_path = [[\.\pipe\nvim-image-proxy]], -- 윈도우 사용자라면 필요
+      })
+    end,
+  },
   { -- for jup
     'meatballs/notebook.nvim',
     config = function()

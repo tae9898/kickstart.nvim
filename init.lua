@@ -1297,7 +1297,7 @@ clangd = {
     },
     config = function()
       require("image").setup({
-        backend = "kitty", -- Kitty 사용 시 'kitty', WezTerm 사용 시 'ueberzug' 등 선택
+        backend = "kitty", -- WezTerm, Kitty 등에서 작동
         integrations = {
           markdown = {
             enabled = true,
@@ -1319,6 +1319,25 @@ clangd = {
       })
     end,
   },
+-- ~/.config/nvim/lua/plugins/lazygit.lua
+-- have to install lazygit first
+-- git version must be higher than 2.32.0
+ {
+  "kdheepak/lazygit.nvim",
+  cmd = {
+    "LazyGit",
+    "LazyGitConfig",
+    "LazyGitCurrentFile",
+    "LazyGitFilter",
+    "LazyGitFilterCurrentFile",
+  },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  keys = {
+    { "<leader>Gg", "<cmd>LazyGit<cr>", desc = "LazyGit" }, -- 리더 키 + gg로 실행
+  },
+},
   { -- for jup
     'meatballs/notebook.nvim',
     config = function()

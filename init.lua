@@ -230,6 +230,7 @@ vim.keymap.set('n', '<leader>gd', ':ChatGPTRun docstring<CR>', { noremap = true,
 vim.keymap.set('v', '<leader>gd', ':ChatGPTRun docstring<CR>', { noremap = true, silent = true, desc = 'Docstring' })
 vim.keymap.set('n', '<leader>gx', ':ChatGPTRun explain_code<CR>', { noremap = true, silent = true, desc = 'Explain code' })
 vim.keymap.set('v', '<leader>gx', ':ChatGPTRun explain_code<CR>', { noremap = true, silent = true, desc = 'Explain code' })
+vim.keymap.set('n', '<leader>cd', ':lcd %:p:h<cr>', { desc = 'cd to current file dir' })
 --[[
 
     <C-Enter> [Both] to submit.
@@ -507,7 +508,18 @@ require('lazy').setup({
   {
     'akinsho/git-conflict.nvim',
     version = '*',
-    config = true,
+    config = function()
+      require('git-conflict').setup({
+        default_mappings = {
+          ours = 'mo',
+          theirs = 'mt',
+          both = 'mb',
+          none = 'm0',
+          prev = '[x',
+          next = ']x',
+        },
+      })
+    end,
   },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
@@ -651,6 +663,8 @@ require('lazy').setup({
           },
         },
       }
+
+
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
@@ -1162,7 +1176,6 @@ clangd = {
   keys = {
     -- 's' 키를 누르면 화면의 모든 단어에 힌트가 뜹니다.
     -- 원하는 곳의 알파벳을 누르면 즉시 이동합니다.
-    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
     -- 'S' 키는 Treesitter 기반으로 범위를 선택하며 이동합니다 (함수 전체 선택 등).
     { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
   },

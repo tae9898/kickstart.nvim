@@ -1169,6 +1169,15 @@ clangd = {
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
+  -- snacks snacks
+{
+  "folke/snacks.nvim",
+  opts = {
+    bigfile = { enabled = true },   -- 이것만 켜도 큰 파일 문제 해결
+    notifier = { enabled = true },
+    lazygit = { enabled = true },
+  }
+},
 {
   "folke/flash.nvim",
   event = "VeryLazy",

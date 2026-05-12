@@ -657,6 +657,11 @@ require('lazy').setup({
         --   },
         -- },
         -- pickers = {}
+        defaults = {
+        preview = {
+          treesitter = false,  -- 프리뷰에서 treesitter 끄기
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
